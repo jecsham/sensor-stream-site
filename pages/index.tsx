@@ -111,14 +111,16 @@ export default function Home() {
               <h5>Download last version for Windows 10</h5>
               <p>Last version is available for Windows 10 from GitHub.</p>
               {fetchingInfo()}
-              <a
-                href={state.downloadUrl}
-                className={`btn btn-success ${
-                  state.fetching ? "disabled" : ""
-                }`}
-              >
-                Download {state.version} - {state.downloadName}
-              </a>
+              <div data-bs-toggle="modal" data-bs-target="#protectModal">
+                <a
+                  href={state.downloadUrl}
+                  className={`btn btn-success ${
+                    state.fetching ? "disabled" : ""
+                  }`}
+                >
+                  Download {state.version} - {state.downloadName}
+                </a>
+              </div>
               <div className="mt-1">
                 <a
                   href={state.downloadSourceUrl}
@@ -217,6 +219,85 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <div
+        className="modal fade"
+        id="protectModal"
+        tabIndex={-1}
+        aria-labelledby="protectModalLabel"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-xl">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="protectModalLabel">
+                Important Notice
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <p>
+                You may receive a warning from{" "}
+                <a
+                  href="https://support.microsoft.com/en-us/microsoft-edge/what-is-smartscreen-and-how-can-it-help-protect-me-1c9a874a-6826-be5e-45b1-67fa445a74c8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  SmartScreen
+                </a>
+                . This is because this program is relatively new, so it has no
+                reputation.{" "}
+                <a
+                  href="https://support.microsoft.com/en-us/microsoft-edge/what-is-smartscreen-and-how-can-it-help-protect-me-1c9a874a-6826-be5e-45b1-67fa445a74c8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn more
+                </a>.
+              </p>
+              <p>
+                To continue with the installation, you can click in{" "}
+                <strong>More info</strong> &gt; <strong>Run anyway</strong>
+              </p>
+              <Image
+                draggable={false}
+                src="/images/protected.jpg"
+                width={1085}
+                height={500}
+                quality={100}
+                alt="Protected screenshot"
+              />
+              <p>
+                This program is <strong>Open Source</strong>, so you can also
+                compile your own version by downloading the{" "}
+                <a
+                  href="https://github.com/jecsham/SensorStream"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  source code
+                </a>
+                .
+              </p>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
